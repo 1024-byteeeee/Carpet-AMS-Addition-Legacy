@@ -235,7 +235,7 @@ carpetamsaddition:
           '0': 'The range of values: 0 - 512'
           '1': 'Need to disable the tweakBlockReachOverride feature in Tweakeroo'
       customMovableBlock:
-        desc: Customize the non-pushable block to make it pushable
+        desc: Customize the non-pushable block to make it pushable (Containers are not supported)
         extra:
           '0': 'Command format:'
           '1': '/carpet customMovableBlock minecraft:BlockName'

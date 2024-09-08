@@ -274,7 +274,7 @@ carpetamsaddition:
           '1': '需要关闭Tweakeroo的tweakBlockReachOverride功能'
       customMovableBlock:
         name: 自定义可移动方块
-        desc: 可自定义的让不能被推动的方块变得能被推动
+        desc: 可自定义的让不能被推动的方块变得能被推动（不支持容器）
         extra:
           '0': '命令格式：'
           '1': '/carpet customMovableBlock minecraft:BlockName'
