@@ -1,0 +1,35 @@
+plugins {
+	id 'maven-publish'
+	id 'fabric-loom' version '1.6-SNAPSHOT' apply false
+	id 'com.replaymod.preprocess' version '7fa8d51'
+}
+
+preprocess {
+	def mc114 = createNode('1.14.4', 1_14_04, 'yarn')
+	def mc115 = createNode('1.15.2', 1_15_02, 'yarn')
+
+	mc114.link(mc115, file('versions/mapping-1.14-1.15.txt'))
+}
+
+tasks.register('buildAndGather') {
+	subprojects {
+		dependsOn project.name + ':build'
+	}
+	doFirst {
+		println 'Gathering builds'
+		delete fileTree(project.projectDir.toPath().resolve('build/libs')) {
+			include '*'
+		}
+		copy {
+			subprojects {
+				def libDir = project.projectDir.toPath().resolve('build/libs')
+				from(libDir) {
+					include '*.jar'
+					exclude '*-dev.jar', '*-sources.jar'
+				}
+				into 'build/libs/'
+				duplicatesStrategy DuplicatesStrategy.INCLUDE
+			}
+		}
+	}
+}
