@@ -119,12 +119,13 @@
     "translations.StyleAccessor",
     "translations.TranslatableTextAccessor",
     "translations.TranslatableTextMixin",
-    "utils.LevelPropertiesMixin"
+    "utils.MinecraftServerMixin"
   ],
   "client": [
     "rule.bedRockFlying.ClientPlayerEntityMixin",
     "rule.maxClientInteractionReachDistance.ClientPlayerInteractionManagerMixin",
-    "rule.maxPlayerInteractionRange.GameRendererMixin"
+    "rule.maxPlayerInteractionRange.GameRendererMixin",
+    "utils.IntegratedServerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

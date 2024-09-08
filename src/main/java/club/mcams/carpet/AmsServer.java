@@ -5,6 +5,7 @@ import carpet.CarpetServer;
 
 import club.mcams.carpet.commands.RegisterCommands;
 import club.mcams.carpet.commands.rule.commandPlayerLeader.LeaderCommandRegistry;
+import club.mcams.carpet.config.LoadConfigFromJson;
 import club.mcams.carpet.config.rule.welcomeMessage.CustomWelcomeMessageConfig;
 import club.mcams.carpet.helpers.rule.fancyFakePlayerName.FancyFakePlayerNameTeamController;
 import club.mcams.carpet.logging.AmsCarpetLoggerRegistry;
@@ -19,8 +20,8 @@ import com.mojang.brigadier.CommandDispatcher;
 
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.command.ServerCommandSource;
-
 import net.minecraft.server.network.ServerPlayerEntity;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -65,6 +66,10 @@ public class AmsServer implements CarpetExtension {
         if (LeaderCommandRegistry.LEADER_LIST.containsValue(player.getUuidAsString())) {
             player.addStatusEffect(LeaderCommandRegistry.HIGH_LIGHT);
         }
+
+        if (!LeaderCommandRegistry.LEADER_LIST.containsValue(player.getUuidAsString())) {
+            player.removeStatusEffect(LeaderCommandRegistry.HIGH_LIGHT.getEffectType());
+        }
     }
 
     @Override
@@ -79,12 +84,11 @@ public class AmsServer implements CarpetExtension {
         CraftingRuleUtil.clearAmsDatapacks(server);
     }
 
-    //#if MC>=11500
-    @Override
-    public void onServerLoadedWorlds(MinecraftServer server) {
+    public static void onServerLoadedWorlds_AMS(MinecraftServer server) {
+        CraftingRuleUtil.loadAmsDatapacks(server);
         FancyFakePlayerNameTeamController.removeBotTeam(server, AmsServerSettings.fancyFakePlayerName);
+        LoadConfigFromJson.load(server);
     }
-    //#endif
 
     @Override
     public void registerCommands(CommandDispatcher<ServerCommandSource> dispatcher) {

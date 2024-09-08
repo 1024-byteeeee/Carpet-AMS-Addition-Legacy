@@ -15,6 +15,8 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import net.minecraft.resource.ResourcePackManager;
+import net.minecraft.resource.ResourcePackProfile;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.dimension.DimensionType;
 
@@ -61,7 +63,7 @@ public class CraftingRuleUtil {
             AmsServer.LOGGER.error("Failed to create directories or copy files: {}", e.getMessage());
         }
         copyFile(
-            "assets/carpetamsaddition/AmsRecipeTweakPack/ams/advancements/root.json",
+                "assets/carpetamsaddition/AmsRecipeTweakPack/ams/advancements/root.json",
             datapackPath + "data/ams/advancements/root.json"
         );
         for (Field f : AmsServerSettings.class.getDeclaredFields()) {
@@ -74,7 +76,7 @@ public class CraftingRuleUtil {
                 datapackPath + "data/"
             );
         }
-        AmsServer.minecraftServer.reload();
+        reload();
         if (isFirstLoad) {
             minecraftServer.getCommandManager().execute(minecraftServer.getCommandSource(), "/datapack enable \"file/AmsData\"");
         }
@@ -86,7 +88,7 @@ public class CraftingRuleUtil {
             (source, rule, s) -> {
                 if (rule.name.equals(ruleName)) {
                     updateCraftingRule(rule, recipes, recipeNamespace, dataPath, ruleName);
-                    AmsServer.minecraftServer.reload();
+                    reload();
                 }
             }
         );
@@ -158,7 +160,7 @@ public class CraftingRuleUtil {
 
     private static void writeAdvancement(String datapackPath, String ruleName, String[] recipes) {
         copyFile(
-            "assets/carpetamsaddition/AmsRecipeTweakPack/ams/advancements/recipe_rule.json",
+                "assets/carpetamsaddition/AmsRecipeTweakPack/ams/advancements/recipe_rule.json",
             datapackPath + "ams/advancements/" + ruleName + ".json"
         );
         JsonObject advancementJson = readJson(datapackPath + "ams/advancements/" + ruleName + ".json");
@@ -219,6 +221,13 @@ public class CraftingRuleUtil {
             writeAdvancement(datapackPath, ruleName, recipes);
         }
     }
+
+    private static void reload() {
+        ResourcePackManager<ResourcePackProfile> resourcePackManager = AmsServer.minecraftServer.getDataPackManager();
+        resourcePackManager.scanPacks();
+        AmsServer.minecraftServer.reload();
+    }
+
 
     private static JsonObject readJson(String filePath) {
         JsonParser jsonParser = new JsonParser();
