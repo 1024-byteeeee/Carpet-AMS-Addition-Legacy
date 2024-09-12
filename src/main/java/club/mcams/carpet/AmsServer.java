@@ -13,8 +13,8 @@ import club.mcams.carpet.settings.CarpetRuleRegistrar;
 import club.mcams.carpet.translations.AMSTranslations;
 import club.mcams.carpet.translations.TranslationConstants;
 import club.mcams.carpet.utils.CountRulesUtil;
-
 import club.mcams.carpet.utils.CraftingRuleUtil;
+
 import com.google.common.collect.Maps;
 import com.mojang.brigadier.CommandDispatcher;
 
@@ -28,7 +28,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.Map;
 
 public class AmsServer implements CarpetExtension {
-
+    private static final AmsServer AMS_SERVER_INSTANCE = new AmsServer();
     public static MinecraftServer minecraftServer;
     public static long serverStartTimeMillis;
     public static final int ruleCount = CountRulesUtil.countRules();
@@ -41,6 +41,10 @@ public class AmsServer implements CarpetExtension {
     public static void init() {
         CarpetServer.manageExtension(INSTANCE);
         AMSTranslations.loadTranslations();
+    }
+
+    public static AmsServer getInstance() {
+        return AMS_SERVER_INSTANCE;
     }
 
     @Override
@@ -84,10 +88,10 @@ public class AmsServer implements CarpetExtension {
         CraftingRuleUtil.clearAmsDatapacks(server);
     }
 
-    public static void onServerLoadedWorlds_AMS(MinecraftServer server) {
-        CraftingRuleUtil.loadAmsDatapacks(server);
+    public void onServerLoadedWorlds_AMS(MinecraftServer server) {
         FancyFakePlayerNameTeamController.removeBotTeam(server, AmsServerSettings.fancyFakePlayerName);
         LoadConfigFromJson.load(server);
+        CraftingRuleUtil.loadAmsDatapacks(server);
     }
 
     @Override

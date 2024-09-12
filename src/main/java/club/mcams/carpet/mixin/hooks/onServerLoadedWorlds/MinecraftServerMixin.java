@@ -1,4 +1,4 @@
-package club.mcams.carpet.mixin.utils;
+package club.mcams.carpet.mixin.hooks.onServerLoadedWorlds;
 
 import club.mcams.carpet.AmsServer;
 
@@ -11,8 +11,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(MinecraftServer.class)
 public abstract class MinecraftServerMixin {
-    @Inject(method = "loadWorld", at = @At("TAIL"))
+    @Inject(method = "loadWorld", at = @At("RETURN"))
     private void onLoadWorld(CallbackInfo ci) {
-        AmsServer.onServerLoadedWorlds_AMS((MinecraftServer) (Object) this);
+        AmsServer.getInstance().onServerLoadedWorlds_AMS((MinecraftServer) (Object) this);
     }
 }
