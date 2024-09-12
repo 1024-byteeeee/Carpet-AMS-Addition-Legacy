@@ -75,7 +75,7 @@ remapJar {
 }
 
 JavaVersion JAVA_VERSION
-JAVA_VERSION = JavaVersion.VERSION_1_8
+JAVA_VERSION = JavaVersion.VERSION_17
 
 String versionSuffix = ''
 // detect github action environment variables
