@@ -2,11 +2,22 @@
 
 **中文** | [**English**](README_en.md)
 
-## 简介
+# Carpet AMS Addition for Minecraft 1.14.4 and 1.15.2
 
-Carpet AMS Addition的Minecraft 1.14.4与1.15.2版本。
+该版本将会随缘跟进Carpet AMS Addition。
 
-失去了一些规则 (懒得写是哪些了)。
+Carpet AMS Addition的wiki依然使用于该版本。
+
+该版本的相关问题请在该版本的Github提交。
+
+对于新的特性请求请在Carpet AMS Addition的Github提交。
+
+如果你发现有规则在Carpet AMS Addition中存在，在该版本中不存在，这是正常的，关于这方面的issue大概率不会被处理。
+
+失去了一些规则 (懒得列出来了).
+
+## Carpet AMS Addition LTS version
+[https://modrinth.com/mod/carpet-ams-addition](https://modrinth.com/mod/carpet-ams-addition)
 
 ## 文档
 

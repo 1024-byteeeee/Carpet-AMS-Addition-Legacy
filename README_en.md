@@ -1,16 +1,23 @@
 # Carpet-AMS-addition
 
-[![License](https://img.shields.io/github/license/Minecraft-AMS/Carpet-AMS-Addition.svg?label=License&color=blue)](https://choosealicense.com/licenses/lgpl-3.0/)
-[![Modrinth](https://img.shields.io/modrinth/dt/q4fx1eTg?label=Modrinth%20Downloads)](https://modrinth.com/mod/carpet-ams-addition)
-[![CurseForge](https://img.shields.io/curseforge/dt/1002635?label=CurseForge%20Downloads&color=orange)](https://www.curseforge.com/minecraft/mc-mods/carpet-ams-addition)
-
 [**中文**](README.md) | [**English**]
 
-## Intro
+# Carpet AMS Addition for Minecraft 1.14.4 and 1.15.2
 
-Carpet AMS Addition for Minecraft 1.14.4 and 1.15.2.
+This version will occasionally and randomly follow up on Carpet AMS Addition.
+
+The Carpet AMS Addition Wiki still applies to this version.
+
+For any issues related to this version, please submit them on this version's GitHub.
+
+For new feature requests, please submit them on the Carpet AMS Addition GitHub.
+
+If you find that a rule present in Carpet AMS Addition does not exist in legacy, this is normal. Issues related to this will not be addressed.
 
 Lost some of the rules (too lazy to list).
+
+## Carpet AMS Addition LTS version
+[https://modrinth.com/mod/carpet-ams-addition](https://modrinth.com/mod/carpet-ams-addition)
 
 ## Documents
 
