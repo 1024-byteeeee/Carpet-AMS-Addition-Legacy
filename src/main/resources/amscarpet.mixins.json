@@ -6,6 +6,7 @@
   "mixins": [
     "carpet.HUDControllerMixin",
     "carpet.SettingsManagerMixin",
+    "hooks.onServerLoadedWorlds.MinecraftServerMixin",
     "rule.amsUpdateSuppressionCrashFix.MinecraftServerMixin",
     "rule.amsUpdateSuppressionCrashFix.WorldMixin",
     "rule.antiFireTotem_itemAntiExplosion.ItemEntityMixin",
@@ -25,11 +26,11 @@
     "rule.commandCustomBlockBlastResistance.FluidStateMixin",
     "rule.commandCustomCommandPermissionLevel.CommandDispatcherMixin",
     "rule.commandCustomCommandPermissionLevel.CommandNodeInvoker",
+    "rule.commandCustomMovableBlock.PistonBlockMixin",
     "rule.creativeOneHitKill.EntityAccessorMixin",
     "rule.creativeOneHitKill.PlayerEntityMixin",
     "rule.creativeShulkerBoxDropsDisabled.ShulkerBoxBlockMixin",
     "rule.customBlockUpdateSuppressor.AbstractBlockMixin",
-    "rule.customMovableBlock.PistonBlockMixin",
     "rule.easyCompost.ComposterBlockMixin",
     "rule.easyMaxLevelBeacon.BeaconBlockEntityMixin",
     "rule.easyMineDragonEgg.DragonEggBlockMixin",
@@ -38,7 +39,7 @@
     "rule.endermanTeleportRandomlyDisabled.EndermanEntityMixin",
     "rule.enderPearlSoundEffect.EnderPearlEntityMixin",
     "rule.extinguishedCampfire_campfireSmokeParticleDisabled.CampfireBlockMixin",
-    "rule.fakePeace.BlockStateMixin",
+    "rule.fakePeace.SpawnHelperMixin",
     "rule.fakePlayerNoScoreboardCounter.PlayerEntityMixin",
     "rule.fakePlayerPickUpController.ItemEntityMixin",
     "rule.fancyFakePlayerName.CarpetMod_PlayerCommandMixin",
@@ -107,25 +108,25 @@
     "rule.softBlock.BlockStateMixin",
     "rule.strongLeash.PathAwareEntityMixin",
     "rule.superBow.InfinityEnchantmentMixin",
+    "rule.superZombieDoctor.ZombieVillagerEntityAccessor",
+    "rule.superZombieDoctor.ZombieVillagerEntityMixin",
     "rule.undyingCoral.CoralBlockBlockMixin",
     "rule.undyingCoral.CoralParentBlockMixin",
     "rule.useItemCooldownDisabled.ItemCooldownManagerMixin",
     "setting.ParsedRuleAccessor",
     "setting.SettingsManagerAccessor",
-    "translations.ClientSettingsC2SPacketAccessor",
     "translations.HUDControllerMixin",
     "translations.LoggerMixin",
     "translations.MessengerInvoker",
     "translations.StyleAccessor",
     "translations.TranslatableTextAccessor",
-    "translations.TranslatableTextMixin",
-    "utils.MinecraftServerMixin"
+    "translations.TranslatableTextMixin"
   ],
   "client": [
+    "hooks.onServerLoadedWorlds.IntegratedServerMixin",
     "rule.bedRockFlying.ClientPlayerEntityMixin",
     "rule.maxClientInteractionReachDistance.ClientPlayerInteractionManagerMixin",
-    "rule.maxPlayerInteractionRange.GameRendererMixin",
-    "utils.IntegratedServerMixin"
+    "rule.maxPlayerInteractionRange.GameRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

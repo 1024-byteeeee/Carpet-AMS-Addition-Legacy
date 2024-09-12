@@ -15,8 +15,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-import net.minecraft.resource.ResourcePackManager;
-import net.minecraft.resource.ResourcePackProfile;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.dimension.DimensionType;
 
@@ -222,12 +220,15 @@ public class CraftingRuleUtil {
         }
     }
 
-    private static void reload() {
-        ResourcePackManager<ResourcePackProfile> resourcePackManager = AmsServer.minecraftServer.getDataPackManager();
-        resourcePackManager.scanPacks();
-        AmsServer.minecraftServer.reload();
+    public static synchronized void reload() {
+        new Thread(() -> {
+            try {
+                AmsServer.minecraftServer.reload();
+            } catch (Exception e) {
+                AmsServer.LOGGER.warn("Server reload failed: {}", e.getMessage());
+            }
+        }).start();
     }
-
 
     private static JsonObject readJson(String filePath) {
         JsonParser jsonParser = new JsonParser();

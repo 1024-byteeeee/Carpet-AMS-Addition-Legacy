@@ -1,4 +1,4 @@
-package club.mcams.carpet.validators.rule.fancyFakePlayerName;
+package club.mcams.carpet.observers.rule.fancyFakePlayerName;
 
 import carpet.patches.EntityPlayerMPFake;
 

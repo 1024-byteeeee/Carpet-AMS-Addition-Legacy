@@ -23,6 +23,7 @@
       "club.mcams.carpet.AmsServerPreLaunch"
     ]
   },
+  "accessWidener": "carpetamsaddition.accesswidener",
   "mixins": [
     "amscarpet.mixins.json"
   ],

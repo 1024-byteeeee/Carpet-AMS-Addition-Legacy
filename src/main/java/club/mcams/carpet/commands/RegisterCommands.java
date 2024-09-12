@@ -4,6 +4,7 @@ import club.mcams.carpet.commands.rule.amsUpdateSuppressionCrashFix.AmsUpdateSup
 import club.mcams.carpet.commands.rule.commandAnvilInteractionDisabled.AnvilInteractionDisabledCommandRegistry;
 import club.mcams.carpet.commands.rule.commandCustomBlockBlastResistance.CustomBlockBlastResistanceCommandRegistry;
 import club.mcams.carpet.commands.rule.commandCustomCommandPermissionLevel.CustomCommandPermissionLevelRegistry;
+import club.mcams.carpet.commands.rule.commandCustomMovableBlock.CustomMovableBlockRegistry;
 import club.mcams.carpet.commands.rule.commandGetSaveSize.GetSaveSizeCommandRegistry;
 import club.mcams.carpet.commands.rule.commandGetSystemInfo.GetSystemInfoCommandRegistry;
 import club.mcams.carpet.commands.rule.commandGoto.GotoCommandRegistry;
@@ -48,6 +49,8 @@ public class RegisterCommands {
         PlayerChunkLoadControllerCommandRegistry.register(dispatcher);
 
         GetSystemInfoCommandRegistry.register(dispatcher);
+
+        CustomMovableBlockRegistry.register(dispatcher);
 
     }
 }
