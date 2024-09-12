@@ -16,6 +16,8 @@ Carpet AMS Addition的wiki依然使用于该版本。
 
 失去了一些规则 (懒得列出来了).
 
+**>>> 需要Java >= 17 <<<**
+
 ## Carpet AMS Addition LTS version
 [https://modrinth.com/mod/carpet-ams-addition](https://modrinth.com/mod/carpet-ams-addition)
 

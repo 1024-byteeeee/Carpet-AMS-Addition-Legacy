@@ -16,6 +16,8 @@ If you find that a rule present in Carpet AMS Addition does not exist in legacy,
 
 Lost some of the rules (too lazy to list).
 
+**>>> Need Java >= 17 <<<**
+
 ## Carpet AMS Addition LTS version
 [https://modrinth.com/mod/carpet-ams-addition](https://modrinth.com/mod/carpet-ams-addition)
 
