@@ -66,6 +66,8 @@ loom {
             ideConfigGenerated false
         }
     }
+
+	accessWidenerPath = file("carpetamsaddition.accesswidener")
 }
 
 remapJar {
@@ -89,6 +91,7 @@ group = project.maven_group
 archivesBaseName = project.archives_base_name + '-mc' + project.minecraft_version + '-fabric'
 
 processResources {
+	from "carpetamsaddition.accesswidener"
 	inputs.property "version", fullModVersion
 	filesMatching("fabric.mod.json") {
 		def valueMap = [
