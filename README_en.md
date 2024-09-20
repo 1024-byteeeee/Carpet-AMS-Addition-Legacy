@@ -1,8 +1,6 @@
-# Carpet-AMS-addition
+# Carpet AMS Addition for Minecraft 1.14.4 and 1.15.2
 
 [**中文**](README.md) | [**English**]
-
-# Carpet AMS Addition for Minecraft 1.14.4 and 1.15.2
 
 This version will occasionally and randomly follow up on Carpet AMS Addition.
 
