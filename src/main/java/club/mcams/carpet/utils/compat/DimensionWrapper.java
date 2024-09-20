@@ -7,6 +7,7 @@ import net.minecraft.world.dimension.DimensionType;
 
 import java.util.Objects;
 
+@SuppressWarnings("unused")
 public class DimensionWrapper {
 
     private final DimensionType dimensionType;
