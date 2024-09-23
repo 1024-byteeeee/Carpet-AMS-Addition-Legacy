@@ -1,8 +1,11 @@
 package club.mcams.carpet;
 
-import club.mcams.carpet.settings.CraftingRule;
+import club.mcams.carpet.settings.RecipeRule;
 import club.mcams.carpet.settings.Rule;
+
+import club.mcams.carpet.observers.rule.recipeRule.RecipeRuleObserver;
 import club.mcams.carpet.observers.rule.fancyFakePlayerName.FancyFakePlayerNameRuleObserver;
+
 import club.mcams.carpet.validators.rule.blockChunkLoaderTimeController.MaxTimeValidator;
 import club.mcams.carpet.validators.rule.commandPlayerChunkLoadController.MaxRangeValidator;
 import club.mcams.carpet.validators.rule.enhancedWorldEater.BlastResistanceValidator;
@@ -425,24 +428,20 @@ public class AmsServerSettings {
     /*
      * 合成表规则
      */
-    @SuppressWarnings("unused")
-    @CraftingRule(recipes = "enchanted_golden_apples.json")
-    @Rule(categories = {AMS, CRAFTING, SURVIVAL})
+    @RecipeRule
+    @Rule(categories = {AMS, CRAFTING, SURVIVAL}, validators = RecipeRuleObserver.class)
     public static boolean craftableEnchantedGoldenApples = false;
 
-    @SuppressWarnings("unused")
-    @CraftingRule(recipes = "bone_block.json")
-    @Rule(categories = {AMS, CRAFTING, SURVIVAL})
+    @RecipeRule
+    @Rule(categories = {AMS, CRAFTING, SURVIVAL}, validators = RecipeRuleObserver.class)
     public static boolean betterCraftableBoneBlock = false;
 
-    @SuppressWarnings("unused")
-    @CraftingRule(recipes = "elytra.json")
-    @Rule(categories = {AMS, CRAFTING, SURVIVAL})
+    @RecipeRule
+    @Rule(categories = {AMS, CRAFTING, SURVIVAL}, validators = RecipeRuleObserver.class)
     public static boolean craftableElytra = false;
 
-    @SuppressWarnings("unused")
-    @CraftingRule(recipes = {"dispenser1.json", "dispenser2.json"})
-    @Rule(categories = {AMS, CRAFTING, SURVIVAL})
+    @RecipeRule
+    @Rule(categories = {AMS, CRAFTING, SURVIVAL}, validators = RecipeRuleObserver.class)
     public static boolean betterCraftableDispenser = false;
 
     public enum blueSkullProbability {
