@@ -56,7 +56,7 @@ public class RecipeRuleHelper {
     }
 
     public static void onServerLoadedWorlds(MinecraftServer server) {
-        if (server != null && !server.isStopping() && !server.isStopped() && hasActiveRecipeRule()) {
+        if (hasActiveRecipeRule()) {
             server.execute(() -> {
                 CommandManager commandManager = server.getCommandManager();
                 commandManager.execute(server.getCommandSource(), "/reload");
