@@ -18,7 +18,7 @@ import java.util.Collection;
 
 public class RecipeRuleHelper {
     public static void onPlayerLoggedIn(MinecraftServer server, ServerPlayerEntity player) {
-        if (server != null && !server.isStopping() && !server.isStopped() && hasActiveRecipeRule()) {
+        if (hasActiveRecipeRule()) {
             RecipeManager recipeManager = server.getRecipeManager();
             Collection<Recipe<?>> allRecipes = recipeManager.values();
             for (Recipe<?> recipe : allRecipes) {
@@ -38,25 +38,23 @@ public class RecipeRuleHelper {
     }
 
     public static void onValueChange(MinecraftServer server) {
-        if (server != null && !server.isStopping() && !server.isStopped()) {
-            AmsRecipeManager.clearRecipeListMemory(AmsRecipeRegistry.getInstance());
-            AmsRecipeRegistry.getInstance().register();
-            server.execute(() -> {
-                server.getCommandManager().execute(server.getCommandSource().withSilent(), "/reload");
-                RecipeManager recipeManager = server.getRecipeManager();
-                Collection<Recipe<?>> allRecipes = recipeManager.values();
-                for (Recipe<?> recipe : allRecipes) {
-                    Identifier recipeId = recipe.getId();
-                    if (recipeId.getNamespace().equals(AmsServer.compactName)) {
-                        server.getCommandManager().execute(server.getCommandSource().withSilent(), "/recipe give @a " + recipeId);
-                    }
+        AmsRecipeManager.clearRecipeListMemory(AmsRecipeRegistry.getInstance());
+        AmsRecipeRegistry.getInstance().register();
+        server.execute(() -> {
+            server.getCommandManager().execute(server.getCommandSource().withSilent(), "/reload");
+            RecipeManager recipeManager = server.getRecipeManager();
+            Collection<Recipe<?>> allRecipes = recipeManager.values();
+            for (Recipe<?> recipe : allRecipes) {
+                Identifier recipeId = recipe.getId();
+                if (recipeId.getNamespace().equals(AmsServer.compactName)) {
+                    server.getCommandManager().execute(server.getCommandSource().withSilent(), "/recipe give @a " + recipeId);
                 }
-            });
-        }
+            }
+        });
     }
 
     public static void onServerLoadedWorlds(MinecraftServer server) {
-        if (server != null && !server.isStopping() && !server.isStopped() && hasActiveRecipeRule()) {
+        if (hasActiveRecipeRule()) {
             server.execute(() -> {
                 CommandManager commandManager = server.getCommandManager();
                 commandManager.execute(server.getCommandSource(), "/reload");
