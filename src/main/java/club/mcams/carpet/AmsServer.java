@@ -8,14 +8,16 @@ import club.mcams.carpet.commands.rule.commandPlayerLeader.LeaderCommandRegistry
 import club.mcams.carpet.config.LoadConfigFromJson;
 import club.mcams.carpet.config.rule.welcomeMessage.CustomWelcomeMessageConfig;
 import club.mcams.carpet.helpers.rule.fancyFakePlayerName.FancyFakePlayerNameTeamController;
+import club.mcams.carpet.helpers.rule.recipeRule.RecipeRuleHelper;
 import club.mcams.carpet.logging.AmsCarpetLoggerRegistry;
 import club.mcams.carpet.settings.CarpetRuleRegistrar;
 import club.mcams.carpet.translations.AMSTranslations;
 import club.mcams.carpet.translations.TranslationConstants;
+import club.mcams.carpet.utils.AutoCleaner;
 import club.mcams.carpet.utils.CountRulesUtil;
-import club.mcams.carpet.utils.CraftingRuleUtil;
 
 import com.google.common.collect.Maps;
+
 import com.mojang.brigadier.CommandDispatcher;
 
 import net.minecraft.server.MinecraftServer;
@@ -74,6 +76,8 @@ public class AmsServer implements CarpetExtension {
         if (!LeaderCommandRegistry.LEADER_LIST.containsValue(player.getUuidAsString())) {
             player.removeStatusEffect(LeaderCommandRegistry.HIGH_LIGHT.getEffectType());
         }
+
+        RecipeRuleHelper.onPlayerLoggedIn(AmsServer.minecraftServer, player);
     }
 
     @Override
@@ -85,13 +89,13 @@ public class AmsServer implements CarpetExtension {
     @Override
     public void onServerClosed(MinecraftServer server) {
         FancyFakePlayerNameTeamController.removeBotTeam(server, AmsServerSettings.fancyFakePlayerName);
-        CraftingRuleUtil.clearAmsDatapacks(server);
     }
 
     public void onServerLoadedWorlds_AMS(MinecraftServer server) {
         FancyFakePlayerNameTeamController.removeBotTeam(server, AmsServerSettings.fancyFakePlayerName);
+        RecipeRuleHelper.onServerLoadedWorlds(server);
+        AutoCleaner.removeAmsDataFolder(server);
         LoadConfigFromJson.load(server);
-        CraftingRuleUtil.loadAmsDatapacks(server);
     }
 
     @Override

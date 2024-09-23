@@ -110,6 +110,7 @@ public class AMSTranslations {
         return translate(text, lang, false);
     }
 
+    @SuppressWarnings("PatternVariableCanBeUsed")
     public static BaseText translate(BaseText text, String lang, boolean suppressWarnings) {
         if (!(text instanceof TranslatableText)) {
             return text;

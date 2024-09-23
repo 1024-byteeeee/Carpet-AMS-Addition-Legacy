@@ -2,6 +2,7 @@ package club.mcams.carpet.config.rule.commandCustomBlockBlastResistance;
 
 import club.mcams.carpet.AmsServer;
 import club.mcams.carpet.commands.rule.commandCustomBlockBlastResistance.CustomBlockBlastResistanceCommandRegistry;
+import club.mcams.carpet.utils.IdentifierUtil;
 import club.mcams.carpet.utils.RegexTools;
 
 import com.google.gson.Gson;
@@ -10,14 +11,12 @@ import com.google.gson.reflect.TypeToken;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.dimension.DimensionType;
 
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Type;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -31,11 +30,11 @@ public class CustomBlockBlastResistanceConfig {
         CustomBlockBlastResistanceCommandRegistry.CUSTOM_BLOCK_BLAST_RESISTANCE_MAP.clear();
         if (Files.exists(path)) {
             try {
-                String json = new String(Files.readAllBytes(path), StandardCharsets.UTF_8);
+                String json = Files.readString(path);
                 Type type = new TypeToken<Map<String, Float>>() {}.getType();
                 Map<String, Float> simplifiedMap = gson.fromJson(json, type);
                 for (Map.Entry<String, Float> entry : simplifiedMap.entrySet()) {
-                    BlockState state = Registry.BLOCK.get(new Identifier(entry.getKey())).getDefaultState();
+                    BlockState state = Registry.BLOCK.get(IdentifierUtil.ofId(entry.getKey())).getDefaultState();
                     CustomBlockBlastResistanceCommandRegistry.CUSTOM_BLOCK_BLAST_RESISTANCE_MAP.put(state, entry.getValue());
                 }
             } catch (IOException e) {
@@ -56,7 +55,7 @@ public class CustomBlockBlastResistanceConfig {
         try {
             Path path = Paths.get(configFilePath);
             Files.createDirectories(path.getParent());
-            Files.write(path, json.getBytes(StandardCharsets.UTF_8));
+            Files.writeString(path, json);
         } catch (IOException e) {
             AmsServer.LOGGER.warn("Failed to save config", e);
         }
