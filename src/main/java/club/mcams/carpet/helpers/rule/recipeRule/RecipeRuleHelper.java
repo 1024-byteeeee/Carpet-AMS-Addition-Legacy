@@ -40,17 +40,19 @@ public class RecipeRuleHelper {
     public static void onValueChange(MinecraftServer server) {
         AmsRecipeManager.clearRecipeListMemory(AmsRecipeRegistry.getInstance());
         AmsRecipeRegistry.getInstance().register();
-        server.execute(() -> {
-            server.getCommandManager().execute(server.getCommandSource().withSilent(), "/reload");
-            RecipeManager recipeManager = server.getRecipeManager();
-            Collection<Recipe<?>> allRecipes = recipeManager.values();
-            for (Recipe<?> recipe : allRecipes) {
-                Identifier recipeId = recipe.getId();
-                if (recipeId.getNamespace().equals(AmsServer.compactName)) {
-                    server.getCommandManager().execute(server.getCommandSource().withSilent(), "/recipe give @a " + recipeId);
+        if (server != null) {
+            server.execute(() -> {
+                server.getCommandManager().execute(server.getCommandSource().withSilent(), "/reload");
+                RecipeManager recipeManager = server.getRecipeManager();
+                Collection<Recipe<?>> allRecipes = recipeManager.values();
+                for (Recipe<?> recipe : allRecipes) {
+                    Identifier recipeId = recipe.getId();
+                    if (recipeId.getNamespace().equals(AmsServer.compactName)) {
+                        server.getCommandManager().execute(server.getCommandSource().withSilent(), "/recipe give @a " + recipeId);
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 
     public static void onServerLoadedWorlds(MinecraftServer server) {
