@@ -3,6 +3,8 @@ package club.mcams.carpet;
 import carpet.CarpetExtension;
 import carpet.CarpetServer;
 
+import club.mcams.carpet.api.recipe.AmsRecipeBuilder;
+import club.mcams.carpet.api.recipe.AmsRecipeManager;
 import club.mcams.carpet.commands.RegisterCommands;
 import club.mcams.carpet.commands.rule.commandPlayerLeader.LeaderCommandRegistry;
 import club.mcams.carpet.config.LoadConfigFromJson;
@@ -17,12 +19,14 @@ import club.mcams.carpet.utils.AutoCleaner;
 import club.mcams.carpet.utils.CountRulesUtil;
 
 import com.google.common.collect.Maps;
+import com.google.gson.JsonElement;
 
 import com.mojang.brigadier.CommandDispatcher;
 
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.util.Identifier;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -96,6 +100,13 @@ public class AmsServer implements CarpetExtension {
         RecipeRuleHelper.onServerLoadedWorlds(server);
         AutoCleaner.removeAmsDataFolder(server);
         LoadConfigFromJson.load(server);
+    }
+
+    public void registerCustomRecipes(Map<Identifier, JsonElement> map) {
+        AmsRecipeManager amsRecipeManager = new AmsRecipeManager(AmsRecipeBuilder.getInstance());
+        AmsRecipeManager.clearRecipeListMemory(AmsRecipeBuilder.getInstance());
+        AmsServerCustomRecipes.getInstance().buildRecipes();
+        amsRecipeManager.registerRecipes(map);
     }
 
     @Override

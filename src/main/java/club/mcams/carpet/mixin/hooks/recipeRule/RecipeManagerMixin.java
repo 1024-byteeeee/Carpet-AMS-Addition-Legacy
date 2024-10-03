@@ -1,7 +1,6 @@
 package club.mcams.carpet.mixin.hooks.recipeRule;
 
-import club.mcams.carpet.api.recipe.AmsRecipeManager;
-import club.mcams.carpet.api.recipe.AmsRecipeRegistry;
+import club.mcams.carpet.AmsServer;
 
 import com.google.gson.JsonElement;
 
@@ -27,13 +26,6 @@ public abstract class RecipeManagerMixin {
         )
     )
     private void addCustomRecipe(Map<Identifier, JsonElement> map, ResourceManager resourceManager, Profiler profiler, CallbackInfo ci) {
-        AmsRecipeRegistry amsRecipeRegistry = AmsRecipeRegistry.getInstance();
-        AmsRecipeManager amsRecipeManager = new AmsRecipeManager(
-            amsRecipeRegistry.shapelessRecipeList,
-            amsRecipeRegistry.shapedRecipeList
-        );
-        AmsRecipeManager.clearRecipeListMemory(amsRecipeRegistry);
-        amsRecipeRegistry.register();
-        amsRecipeManager.registerRecipes(map);
+        AmsServer.getInstance().registerCustomRecipes(map);
     }
 }

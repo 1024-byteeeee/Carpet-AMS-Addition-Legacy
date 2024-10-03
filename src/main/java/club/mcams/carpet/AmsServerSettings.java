@@ -382,6 +382,12 @@ public class AmsServerSettings {
     @Rule(categories = {AMS, FEATURE, SURVIVAL})
     public static boolean easyRefreshTrades = false;
 
+    @Rule(categories = {AMS, FEATURE, SURVIVAL})
+    public static boolean jebSheepDropRandomColorWool = false;
+
+    @Rule(categories = {AMS, FEATURE, SURVIVAL}, strict = false)
+    public static int furnaceSmeltingTimeController = -1;
+
     /*
      * 区块加载规则
      */
@@ -443,6 +449,10 @@ public class AmsServerSettings {
     @RecipeRule
     @Rule(categories = {AMS, CRAFTING, SURVIVAL}, validators = RecipeRuleObserver.class)
     public static boolean betterCraftableDispenser = false;
+
+    @RecipeRule
+    @Rule(categories = {AMS, CRAFTING, SURVIVAL}, validators = RecipeRuleObserver.class)
+    public static boolean rottenFleshBurnedIntoLeather = false;
 
     public enum blueSkullProbability {
         VANILLA,
